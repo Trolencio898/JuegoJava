@@ -8,7 +8,7 @@ public class MenuDeportes extends JPanel implements ActionListener {
     final String[] opciones = {"Fútbol", "Baloncesto", "Tenis", "Natación", "Atletismo", "Ciclismo", "Salir"};
 
     MenuDeportes() {
-        setBackground(new Color(50, 50, 50));
+        setOpaque(false);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 0, 10, 0);
@@ -34,17 +34,21 @@ public class MenuDeportes extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        JButton fuente = (JButton) e.getSource();
-        String texto = fuente.getText();
-        if (texto.equals("Fútbol")) {
-            cambiarPanel("menuFut");
-        } else if (texto.equals("Salir")) {
-            System.exit(0);
-        } else {
-            JOptionPane.showMessageDialog(this, "Deporte '" + texto + "' no implementado aún.");
-        }
+public void actionPerformed(ActionEvent e) {
+    JButton fuente = (JButton) e.getSource();
+    String texto = fuente.getText();
+    if (texto.equals("Fútbol")) {
+        cambiarPanel("menuFut");
+    } else if (texto.equals("Tenis")) {
+        cambiarPanel("menuTenis");
+    } else if (texto.equals("Baloncesto")) {   // <-- AGREGAR ESTA LÍNEA
+        cambiarPanel("menuBaloncesto");
+    } else if (texto.equals("Salir")) {
+        System.exit(0);
+    } else {
+        JOptionPane.showMessageDialog(this, "Deporte '" + texto + "' no implementado aún.");
     }
+}
 
     void cambiarPanel(String nombre) {
         JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);

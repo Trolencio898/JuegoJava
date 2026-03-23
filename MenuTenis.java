@@ -3,20 +3,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuFut extends JPanel implements ActionListener {
+public class MenuTenis extends JPanel implements ActionListener {
     JButton jugar, reglas, salir;
-    Image fondo;
 
-    MenuFut() {
-        fondo = new ImageIcon("./imagenes/cancha2.jpg").getImage();
-
-        setLayout(new GridBagLayout());
+    MenuTenis() {
         setOpaque(false);
-
+        setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 0, 10, 0);
 
-        JLabel titulo = new JLabel("FÚTBOL", SwingConstants.CENTER);
+        JLabel titulo = new JLabel("TENIS", SwingConstants.CENTER);
         titulo.setFont(new Font("Bauhaus 93", Font.BOLD, 60));
         titulo.setForeground(Color.WHITE);
         gbc.gridy = 0;
@@ -51,20 +47,13 @@ public class MenuFut extends JPanel implements ActionListener {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        if (fondo != null) {
-            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
-        }
-        super.paintComponent(g);
-    }
-
-    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jugar) {
-            cambiarPanel("futbol");
-            iniciarAnimacionFutbol();
+            cambiarPanel("tenis");
+            iniciarAnimacionTenis();
         } else if (e.getSource() == reglas) {
             cambiarPanel("reglas");
+            definirRegreso();
         } else if (e.getSource() == salir) {
             cambiarPanel("deportes");
         }
@@ -77,14 +66,27 @@ public class MenuFut extends JPanel implements ActionListener {
         layout.show(contenedor, nombre);
     }
 
-    void iniciarAnimacionFutbol() {
+    void iniciarAnimacionTenis() {
         JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
         JPanel contenedor = (JPanel) marco.getContentPane().getComponent(0);
         Component[] comps = contenedor.getComponents();
         for (Component c : comps) {
-            if (c instanceof Futbol) {
-                Futbol futbol = (Futbol) c;
-                futbol.iniciar();
+            if (c instanceof Tenis) {
+                Tenis tenis = (Tenis) c;
+                tenis.iniciar();
+                break;
+            }
+        }
+    }
+
+    void definirRegreso() {
+        JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JPanel contenedor = (JPanel) marco.getContentPane().getComponent(0);
+        Component[] comps = contenedor.getComponents();
+        for (Component c : comps) {
+            if (c instanceof Reglas) {
+                Reglas reglas = (Reglas) c;
+                reglas.definirRegreso("menuTenis");
                 break;
             }
         }

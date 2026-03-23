@@ -2,12 +2,12 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Futbol extends Campo {
-    int fase = 0; // 0 = mover jugador, 1 = mover pelota
+    int fase = 0;
     Thread hilo;
-    boolean animando = false;
+    int animando = 0;
+    int gol = 0;
 
     Futbol() {
-        // Se colocan las posiciones iniciales correctas
         jugadorX = 150;
         jugadorY = 388;
         pelotaX = 700;
@@ -15,12 +15,15 @@ public class Futbol extends Campo {
     }
 
     void iniciar() {
-        if (animando) return;
-        animando = true;
+        if (animando == 1) return;
+        animando = 1;
         hilo = new Thread() {
             public void run() {
-                while (animando) {
+                while (animando == 1) {
                     mover();
+                    if (gol == 1) {
+                        actualizarOla();
+                    }
                     repaint();
                     try {
                         Thread.sleep(5);
@@ -34,8 +37,7 @@ public class Futbol extends Campo {
     }
 
     void detener() {
-        animando = false;
-        // Opcional: esperar a que el hilo termine, pero no necesario.
+        animando = 0;
     }
 
     void mover() {
@@ -48,6 +50,11 @@ public class Futbol extends Campo {
         } else if (fase == 1) {
             if (pelotaX < 900) {
                 pelotaX = pelotaX + 1;
+            } else {
+                if (gol == 0) {
+                    gol = 1;
+                    activarOla();
+                }
             }
         }
     }
