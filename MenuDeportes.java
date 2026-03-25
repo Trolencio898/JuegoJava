@@ -4,9 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuDeportes extends JPanel implements ActionListener {
-
     JButton[] botones;
-    final String[] opciones = {"Futbol", "Baloncesto", "Tenis", "Boxeo", "Futbol Americano", "Salir"};
+    final String[] opciones = {"Futbol", "Baloncesto", "Tenis", "Voleibol", "Boxeo", "Futbol Americano", "Salir"};
 
     MenuDeportes() {
         setOpaque(false);
@@ -45,6 +44,8 @@ public class MenuDeportes extends JPanel implements ActionListener {
             cambiarPanel("menuTenis");
         } else if (texto.equals("Baloncesto")) {
             cambiarPanel("menuBaloncesto");
+        } else if (texto.equals("Voleibol")) {
+            cambiarPanel("menuVoleibol");
         } else if (texto.equals("Boxeo")) {
             cambiarPanel("menuBoxeo");
         } else if (texto.equals("Futbol Americano")) {
