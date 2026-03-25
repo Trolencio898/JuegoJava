@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class FutbolAmericano extends CampoAmericano {
-
+    JButton volver;
     Thread hilo;
     int animando = 0;
 
@@ -26,6 +26,29 @@ public class FutbolAmericano extends CampoAmericano {
         balonX = jugadorX + jugadorAncho;
         balonY = jugadorY + 10;
         metaX = canchaX + canchaAncho - canchaAncho / 10 - jugadorAncho - 10;
+
+        
+
+        // ===== BOTÓN =====
+        volver = new JButton("VOLVER");
+        volver.setBounds(20, 20, 120, 40);
+        volver.setBackground(Color.RED);
+        volver.setForeground(Color.WHITE);
+
+        volver.addActionListener(e -> {
+            detener();
+            cambiarPanel("menuFutAmericano");
+        });
+
+        add(volver);
+        volver.setVisible(true);
+    }
+
+    void cambiarPanel(String nombre) {
+        JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JPanel contenedor = (JPanel) marco.getContentPane().getComponent(0);
+        CardLayout layout = (CardLayout) contenedor.getLayout();
+        layout.show(contenedor, nombre);
     }
 
     void iniciar() {

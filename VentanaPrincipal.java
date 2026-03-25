@@ -13,10 +13,9 @@ public class VentanaPrincipal {
         marco.setSize(1080, 720);
         marco.setLocation(100, 100);
 
-        fondo = new ImageIcon(getClass().getResource("/Imagenes/fp.jpg")).getImage();
-
+        fondo = new ImageIcon(getClass().getResource("/Imagenes/fondomainmenu.jpg")).getImage();
+        
         layout = new CardLayout();
-
         contenedor = new JPanel(layout) {
             @Override
             protected void paintComponent(Graphics g) {
@@ -25,14 +24,14 @@ public class VentanaPrincipal {
                     g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
                 }
                 Graphics2D g2d = (Graphics2D) g;
-                g2d.setColor(new Color(0, 0, 0, 120));
-                g2d.fillRect(0, 0, getWidth(), getHeight());
+                //g2d.setColor(new Color(0, 0, 0, 120));
+                //g2d.fillRect(0, 0, getWidth(), getHeight());
             }
         };
-
         contenedor.setOpaque(false);
         marco.add(contenedor);
 
+        // Crear todos los paneles
         MenuDeportes menuDeportes = new MenuDeportes();
         MenuFut menuFut = new MenuFut();
         Futbol futbol = new Futbol();
@@ -42,9 +41,13 @@ public class VentanaPrincipal {
         Baloncesto baloncesto = new Baloncesto();
         MenuVoleibol menuVoleibol = new MenuVoleibol();
         Voleibol voleibol = new Voleibol();
-        // Si tienes Boxeo y FutbolAmericano, también se añaden aquí
+        MenuBoxeo menuBoxeo = new MenuBoxeo();
+        Boxeo boxeo = new Boxeo();
+        MenuFutAmericano menuFutAmericano = new MenuFutAmericano();
+        FutbolAmericano futAmericano = new FutbolAmericano();
         Reglas reglas = new Reglas();
 
+        // Añadir al contenedor con CardLayout
         contenedor.add(menuDeportes, "deportes");
         contenedor.add(menuFut, "menuFut");
         contenedor.add(futbol, "futbol");
@@ -54,6 +57,10 @@ public class VentanaPrincipal {
         contenedor.add(baloncesto, "baloncesto");
         contenedor.add(menuVoleibol, "menuVoleibol");
         contenedor.add(voleibol, "voleibol");
+        contenedor.add(menuBoxeo, "menuBoxeo");
+        contenedor.add(boxeo, "boxeo");
+        contenedor.add(menuFutAmericano, "menuFutAmericano");
+        contenedor.add(futAmericano, "futAmericano");
         contenedor.add(reglas, "reglas");
     }
 

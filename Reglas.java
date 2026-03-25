@@ -6,27 +6,37 @@ import java.awt.event.ActionListener;
 public class Reglas extends JPanel implements ActionListener {
     JButton volver;
     String regreso = "menuFut";
+    
 
     Reglas() {
-        setLayout(new BorderLayout());
-        setBackground(Color.DARK_GRAY);
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        setBackground(new Color(115, 115, 115));
 
         JTextArea texto = new JTextArea();
         texto.setEditable(false);
-        texto.setFont(new Font("Arial", Font.PLAIN, 18));
+        texto.setFont(new Font("Franklin Gothic Demi Cond", Font.PLAIN, 18));
         texto.setForeground(Color.WHITE);
-        texto.setBackground(Color.DARK_GRAY);
+        texto.setBackground(new Color(115,115,115));
+        texto.setMargin(new Insets(6, 6, 6, 6));
         texto.setText("Reglas del juego DUPO:\n\n"
                 + "• Selecciona un deporte y luego JUGAR.\n"
                 + "• En Fútbol, controla al jugador rojo con las flechas (próximamente).\n"
                 + "• Por ahora, el jugador corre y patea la pelota automáticamente.\n\n"
                 + "¡Diviértete!");
-        add(new JScrollPane(texto), BorderLayout.CENTER);
+        gbc.gridx=2;
+        gbc.gridy=2;
+        add(new JScrollPane(texto), gbc);
 
         volver = new JButton("Volver");
-        volver.setFont(new Font("Arial", Font.BOLD, 20));
+        volver.setFont(new Font("Franklin Gothic Demi Cond", Font.BOLD, 20));
+        volver.setBackground(new Color(235, 56, 12));
+        volver.setForeground(Color.white);
         volver.addActionListener(this);
-        add(volver, BorderLayout.SOUTH);
+        gbc.gridx=2;
+        gbc.gridy=3;
+        add(volver, gbc);
     }
 
     @Override

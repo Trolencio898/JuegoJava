@@ -46,6 +46,8 @@ public class CampoAmericano extends JPanel {
         espectadorY    = new int[filas][espectadoresPorFila];
         desfase        = new double[filas][espectadoresPorFila];
 
+        setBackground(new Color(66, 107, 25));
+
         int espacioX = canchaAncho / (espectadoresPorFila - 1);
 
         for (int i = 0; i < espectadoresPorFila; i++) {
@@ -119,7 +121,7 @@ public class CampoAmericano extends JPanel {
 
     void dibujarCancha(Graphics g) {
         // Pasto
-        g.setColor(new Color(34, 120, 34));
+        g.setColor(new Color(100, 144, 44));
         g.fillRect(canchaX, canchaY, canchaAncho, canchaAlto);
 
         // Franjas alternas de pasto

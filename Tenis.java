@@ -2,6 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Tenis extends JPanel {
+    JButton volver;
     int campoX = 50;
     int campoY = 150;
     int campoAncho = 900;
@@ -50,12 +51,26 @@ public class Tenis extends JPanel {
 
     Tenis() {
         setOpaque(true);
-        setBackground(Color.WHITE);
+        setBackground(new Color(204, 102, 45));
 
         espectadorX = new int[filas][espectadoresPorFila];
         espectadorYBase = new int[filas][espectadoresPorFila];
         espectadorY = new int[filas][espectadoresPorFila];
         desfase = new double[filas][espectadoresPorFila];
+
+        // ===== BOTÓN =====
+        volver = new JButton("VOLVER");
+        volver.setBounds(20, 20, 120, 40);
+        volver.setBackground(Color.RED);
+        volver.setForeground(Color.WHITE);
+
+        volver.addActionListener(e -> {
+            detener();
+            cambiarPanel("menuTenis");
+        });
+
+        add(volver);
+        volver.setVisible(true);
 
         int espacioX = campoAncho / (espectadoresPorFila - 1);
         for (int i = 0; i < espectadoresPorFila; i++) {
@@ -75,6 +90,13 @@ public class Tenis extends JPanel {
                 espectadorY[f][i] = yBase;
             }
         }
+    }
+
+    void cambiarPanel(String nombre) {
+        JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JPanel contenedor = (JPanel) marco.getContentPane().getComponent(0);
+        CardLayout layout = (CardLayout) contenedor.getLayout();
+        layout.show(contenedor, nombre);
     }
 
     void iniciar() {

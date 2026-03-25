@@ -6,14 +6,37 @@ public class Futbol extends Campo {
     Thread hilo;
     int animando = 0;
     int gol = 0;
-
+    JButton volver;
     Futbol() {
         jugadorX = 150;
         jugadorY = 388;
         pelotaX = 700;
         pelotaY = 388;
+        // ===== BOTÓN =====
+        volver = new JButton("VOLVER");
+        volver.setBounds(20, 20, 120, 40);
+        volver.setBackground(Color.RED);
+        volver.setForeground(Color.WHITE);
+
+        volver.addActionListener(e -> {
+            detener();
+            reiniciar();
+            cambiarPanel("menuFut");
+        });
+
+        add(volver);
+        volver.setVisible(true);
     }
 
+    public void reiniciar(){
+        jugadorX = 150;
+        jugadorY = 388;
+        pelotaX = 700;
+        pelotaY = 388;
+        fase=0;
+        gol=0;
+        desactivarOla();
+    }
     void iniciar() {
         if (animando == 1) return;
         animando = 1;
@@ -38,6 +61,13 @@ public class Futbol extends Campo {
 
     void detener() {
         animando = 0;
+    }
+
+    void cambiarPanel(String nombre) {
+        JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JPanel contenedor = (JPanel) marco.getContentPane().getComponent(0);
+        CardLayout layout = (CardLayout) contenedor.getLayout();
+        layout.show(contenedor, nombre);
     }
 
     void mover() {

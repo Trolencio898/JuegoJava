@@ -1,8 +1,12 @@
 import java.awt.*;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class RingBoxeo extends JPanel {
-
+    JButton volver;
     // --- Espectadores ---
     int filas = 3;
     int espectadoresPorFila = 25;
@@ -56,10 +60,26 @@ public class RingBoxeo extends JPanel {
     int tiempoCelebracion = 0;
 
     RingBoxeo() {
+        setBackground(new Color(42, 25, 94));
         espectadorX    = new int[filas][espectadoresPorFila];
         espectadorYBase = new int[filas][espectadoresPorFila];
         espectadorY    = new int[filas][espectadoresPorFila];
         desfase        = new double[filas][espectadoresPorFila];
+
+        // ===== BOTÓN =====
+        volver = new JButton("VOLVER");
+        volver.setBounds(20, 20, 120, 40);
+        volver.setBackground(Color.RED);
+        volver.setForeground(Color.WHITE);
+
+        volver.addActionListener(e -> {
+            
+            
+            cambiarPanel("menuBoxeo");
+        });
+
+        add(volver);
+        volver.setVisible(true);
 
         int espacioX = ringAncho / (espectadoresPorFila - 1);
 
@@ -84,6 +104,15 @@ public class RingBoxeo extends JPanel {
 
         resetPunios();
     }
+
+    void cambiarPanel(String nombre) {
+        JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JPanel contenedor = (JPanel) marco.getContentPane().getComponent(0);
+        CardLayout layout = (CardLayout) contenedor.getLayout();
+        layout.show(contenedor, nombre);
+    }
+
+    
 
     void resetPunios() {
         punio1X = b1X + b1Ancho;

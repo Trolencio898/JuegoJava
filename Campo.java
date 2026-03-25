@@ -65,6 +65,9 @@ public class Campo extends JPanel {
         olaActiva = 1;
     }
 
+    public void desactivarOla(){
+        olaActiva = 0;
+    }
     void actualizarOla() {
         if (olaActiva == 0) return;
         for (int f = 0; f < filas; f++) {
@@ -103,6 +106,7 @@ public class Campo extends JPanel {
     }
 
     void dibujarCampo(Graphics g) {
+        this.setBackground(new Color(33, 115, 33));
         g.setColor(new Color(34, 139, 34));
         g.fillRect(campoX, campoY, campoAncho, campoAlto);
         g.setColor(Color.WHITE);

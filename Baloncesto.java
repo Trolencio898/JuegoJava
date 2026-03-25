@@ -2,6 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Baloncesto extends JPanel {
+    JButton volver;
     int campoX = 50;
     int campoY = 150;
     int campoAncho = 900;
@@ -68,6 +69,21 @@ public class Baloncesto extends JPanel {
         espectadorY = new int[filas][espectadoresPorFila];
         desfase = new double[filas][espectadoresPorFila];
 
+        // ===== BOTÓN =====
+        volver = new JButton("VOLVER");
+        volver.setBounds(20, 20, 120, 40);
+        volver.setBackground(Color.RED);
+        volver.setForeground(Color.WHITE);
+
+        volver.addActionListener(e -> {
+            detener();
+            
+            cambiarPanel("menuBaloncesto");
+        });
+
+        add(volver);
+        volver.setVisible(true);
+
         int espacioX = campoAncho / (espectadoresPorFila - 1);
         for (int i = 0; i < espectadoresPorFila; i++) {
             int x = campoX + i * espacioX;
@@ -89,6 +105,13 @@ public class Baloncesto extends JPanel {
 
         pelotaX = jugadorIzqX + jugadorAncho;
         pelotaY = rojoBaseY + jugadorAlto / 2;
+    }
+
+    void cambiarPanel(String nombre) {
+        JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JPanel contenedor = (JPanel) marco.getContentPane().getComponent(0);
+        CardLayout layout = (CardLayout) contenedor.getLayout();
+        layout.show(contenedor, nombre);
     }
 
     void iniciar() {
