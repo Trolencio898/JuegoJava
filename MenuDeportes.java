@@ -4,8 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuDeportes extends JPanel implements ActionListener {
+
     JButton[] botones;
-    final String[] opciones = {"Fútbol", "Baloncesto", "Tenis", "Natación", "Atletismo", "Ciclismo", "Salir"};
+    final String[] opciones = {"Futbol", "Baloncesto", "Tenis", "Boxeo", "Futbol Americano", "Salir"};
 
     MenuDeportes() {
         setOpaque(false);
@@ -34,21 +35,26 @@ public class MenuDeportes extends JPanel implements ActionListener {
     }
 
     @Override
-public void actionPerformed(ActionEvent e) {
-    JButton fuente = (JButton) e.getSource();
-    String texto = fuente.getText();
-    if (texto.equals("Fútbol")) {
-        cambiarPanel("menuFut");
-    } else if (texto.equals("Tenis")) {
-        cambiarPanel("menuTenis");
-    } else if (texto.equals("Baloncesto")) {   // <-- AGREGAR ESTA LÍNEA
-        cambiarPanel("menuBaloncesto");
-    } else if (texto.equals("Salir")) {
-        System.exit(0);
-    } else {
-        JOptionPane.showMessageDialog(this, "Deporte '" + texto + "' no implementado aún.");
+    public void actionPerformed(ActionEvent e) {
+        JButton fuente = (JButton) e.getSource();
+        String texto = fuente.getText();
+
+        if (texto.equals("Futbol")) {
+            cambiarPanel("menuFut");
+        } else if (texto.equals("Tenis")) {
+            cambiarPanel("menuTenis");
+        } else if (texto.equals("Baloncesto")) {
+            cambiarPanel("menuBaloncesto");
+        } else if (texto.equals("Boxeo")) {
+            cambiarPanel("menuBoxeo");
+        } else if (texto.equals("Futbol Americano")) {
+            cambiarPanel("menuFutAmericano");
+        } else if (texto.equals("Salir")) {
+            System.exit(0);
+        } else {
+            JOptionPane.showMessageDialog(this, "Deporte '" + texto + "' no implementado aun.");
+        }
     }
-}
 
     void cambiarPanel(String nombre) {
         JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);

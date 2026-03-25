@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VentanaPrincipal {
+
     JFrame marco;
     CardLayout layout;
     JPanel contenedor;
@@ -28,23 +29,31 @@ public class VentanaPrincipal {
         contenedor.setOpaque(false);
         marco.add(contenedor);
 
-        MenuDeportes menuDeportes = new MenuDeportes();
-        MenuFut menuFut = new MenuFut();
-        Futbol futbol = new Futbol();
-        MenuTenis menuTenis = new MenuTenis();
-        Tenis tenis = new Tenis();
-        MenuBaloncesto menuBaloncesto = new MenuBaloncesto();
-        Baloncesto baloncesto = new Baloncesto();
-        Reglas reglas = new Reglas();
+        MenuDeportes menuDeportes         = new MenuDeportes();
+        MenuFut menuFut                   = new MenuFut();
+        Futbol futbol                     = new Futbol();
+        MenuTenis menuTenis               = new MenuTenis();
+        Tenis tenis                       = new Tenis();
+        MenuBaloncesto menuBaloncesto      = new MenuBaloncesto();
+        Baloncesto baloncesto             = new Baloncesto();
+        MenuBoxeo menuBoxeo               = new MenuBoxeo();
+        Boxeo boxeo                       = new Boxeo();
+        MenuFutAmericano menuFutAmericano  = new MenuFutAmericano();
+        FutbolAmericano futAmericano      = new FutbolAmericano();
+        Reglas reglas                     = new Reglas();
 
-        contenedor.add(menuDeportes, "deportes");
-        contenedor.add(menuFut, "menuFut");
-        contenedor.add(futbol, "futbol");
-        contenedor.add(menuTenis, "menuTenis");
-        contenedor.add(tenis, "tenis");
-        contenedor.add(menuBaloncesto, "menuBaloncesto");
-        contenedor.add(baloncesto, "baloncesto");
-        contenedor.add(reglas, "reglas");
+        contenedor.add(menuDeportes,      "deportes");
+        contenedor.add(menuFut,           "menuFut");
+        contenedor.add(futbol,            "futbol");
+        contenedor.add(menuTenis,         "menuTenis");
+        contenedor.add(tenis,             "tenis");
+        contenedor.add(menuBaloncesto,    "menuBaloncesto");
+        contenedor.add(baloncesto,        "baloncesto");
+        contenedor.add(menuBoxeo,         "menuBoxeo");
+        contenedor.add(boxeo,             "boxeo");
+        contenedor.add(menuFutAmericano,  "menuFutAmericano");
+        contenedor.add(futAmericano,      "futAmericano");
+        contenedor.add(reglas,            "reglas");
     }
 
     void mostrar() {
